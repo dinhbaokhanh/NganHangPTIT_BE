@@ -1,8 +1,6 @@
 import { getStorage, ref, uploadBytes, getDownloadURL, listAll, deleteObject } from 'firebase/storage';
 import Resources from "../../models/Resources/Resources.js"
 import _throw from '../../utils/_throw.js';
-import path from 'path';
-import pdfPoppler from "pdf-poppler"
 
 const fileController = {
     uploadFiles: async (req, res) => {
