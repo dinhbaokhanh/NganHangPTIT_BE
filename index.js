@@ -8,6 +8,8 @@ import { getFirestore } from "@firebase/firestore";
 import pathArr from "./routes/index.js";
 import { publicPath } from "./config/path.js"
 
+const port = process.env.PORT || 8000;
+
 const app = express();
 
 app.use(cors());
@@ -15,10 +17,14 @@ app.use(express.json());
 
 app.use('/static', express.static(publicPath));
 
+app.get('/check', (req, res) => {
+    res.status(200).send({
+        message: "Server is Working !!"
+    })
+})
 // database connection
-const URI = 'mongodb+srv://dinhbaokhanh:dinhbaokhanh12345@cluster0.8dkbeuf.mongodb.net/nganhangptit';
-mongoose.connect(URI, {})
-    .then((res) => app.listen(8000))
+mongoose.connect(process.env.DB_URI, {})
+    .then((res) => app.listen(port))
     .catch((err) => console.log(err));
 
 
