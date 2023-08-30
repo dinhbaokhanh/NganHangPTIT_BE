@@ -22,11 +22,11 @@ const authController = {
             return res.status(200).json({ message: "user is created" })
 
         } catch (error) {
-            console.log(error);
+            res.status(500).json({ message: error.message });
         }
-
     },
 
+    
     login: async (req, res) => {
         const { username, password } = req.body;
         try {
@@ -74,9 +74,8 @@ const authController = {
                 });
             } else _throw({ code: 400, message: "Tên người dùng không tồn tại" })
         } catch (error) {
-            console.log(error);
+            res.status(500).json({ message: error.message });
         }
-
     },
 
     logout: async (req, res) => {
